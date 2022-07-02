@@ -1,0 +1,16 @@
+POST http://localhost:8080/persons
+Content-Type: application/json
+
+{
+  "firstName": "NAME",
+  "lastName": "LAST_NAME"
+}
+
+###
+POST http://localhost:8080/persons/2/notes
+Content-Type: application/json
+
+{
+  "title": "Second note",
+  "body": "Cool body of the coolest note!"
+}
