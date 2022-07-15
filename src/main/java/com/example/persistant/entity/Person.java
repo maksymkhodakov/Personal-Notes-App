@@ -28,6 +28,7 @@ public class Person {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Note> notes = new ArrayList<>();
 
     public void addNote(Note note) {
