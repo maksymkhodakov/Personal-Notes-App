@@ -3,4 +3,4 @@ CREATE TABLE Product (
                          name TEXT,
                          warranty TEXT NOT NULL,
                          PRIMARY KEY ( id )
-)
+);
