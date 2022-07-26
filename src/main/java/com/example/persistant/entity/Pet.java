@@ -1,10 +1,7 @@
 package com.example.persistant.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -21,8 +18,8 @@ public class Pet {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
     @OneToOne(mappedBy = "pet")
