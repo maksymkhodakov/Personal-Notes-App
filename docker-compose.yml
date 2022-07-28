@@ -1,12 +1,16 @@
-version: '3.1'
+version: '3.6'
 
 services:
-  db:
-    image: postgres
+
+  mysql:
+    image: mysql
+    platform: linux/amd64
     restart: always
     ports:
-      - "5434:5434"
+      - 3306:3306
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: demo
+      MYSQL_ROOT_HOST: localhost
+      MYSQL_ROOT_PASSWORD: adminpassword
+      MYSQL_DATABASE: persistence
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password

@@ -13,11 +13,26 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Table(name = "persons")
+@Table(name = "persons",
+        uniqueConstraints = {
+        @UniqueConstraint(name = "person_email_uq", columnNames = "email")}
+)
 public class Person {
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+            name = "id",
+            nullable = false,
+            updatable = false
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "person_sequence"
+    )
+    @SequenceGenerator(
+            name = "person_sequence",
+            sequenceName = "person_sequence",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(nullable = false)
@@ -25,6 +40,14 @@ public class Person {
 
     @Column(nullable = false)
     private String lastName;
+
+    @Column(
+            name = "email",
+            unique = true,
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String email;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
@@ -39,8 +62,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName) {
-        this.id = id;
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

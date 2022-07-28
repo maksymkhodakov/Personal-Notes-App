@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/demo
-    username: postgres
-    password: postgres
+    url: jdbc:mysql://localhost:3306/persistence
+    username: username
+    password: password
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
