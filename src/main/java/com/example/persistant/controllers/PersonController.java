@@ -1,7 +1,6 @@
 package com.example.persistant.controllers;
 
 import com.example.persistant.entity.Person;
-import com.example.persistant.repository.PersonRepository;
 import com.example.persistant.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +30,15 @@ public class PersonController {
     @GetMapping
     public List<Person> getAll() {
         return personService.getAll();
+    }
+
+    @GetMapping("/findByLastName/{lastName}")
+    public List<Person> getByLastName(@PathVariable("lastName") String lastName) {
+        return personService.getAllByLastName(lastName);
+    }
+
+    @GetMapping("/findByFirstName/{firstName}")
+    public List<Person> getByFirstName(@PathVariable("firstName") String firstName) {
+        return personService.getAllByFirstName(firstName);
     }
 }

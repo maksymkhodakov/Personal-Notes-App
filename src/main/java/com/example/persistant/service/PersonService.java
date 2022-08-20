@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -20,5 +21,13 @@ public class PersonService {
 
     public void save(Person person) {
         personRepository.save(person);
+    }
+
+    public List<Person> getAllByLastName(String lastName) {
+        return personRepository.findAllByLastName(lastName).orElseThrow(NoSuchElementException::new);
+    }
+
+    public List<Person> getAllByFirstName(String firstName) {
+        return personRepository.findAllPersonsByFirstName(firstName).orElseThrow(NoSuchElementException::new);
     }
 }
